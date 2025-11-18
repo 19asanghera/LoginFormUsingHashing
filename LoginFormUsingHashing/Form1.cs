@@ -41,12 +41,12 @@ namespace LoginFormUsingHashing
             con.Open();
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = con;
-            if (checkBox1.Checked)
+            if (checkBox1.Checked) //NEW PERSON LOGIN
             {
                 // check pwd is entered the same twice!
                 string SQL = "INSERT INTO users(username,password) VALUES(@uname,@pwd)";
                 cmd.CommandText = SQL;
-                cmd.Parameters.AddWithValue("@uname",txtUserName.Text);
+                cmd.Parameters.AddWithValue("@uname",txtUserName.Text); 
                 var hash = HashPassword(txtPwd.Text, out var salt);
                 string hpwd = hash + Convert.ToHexString(salt);
                 cmd.Parameters.AddWithValue("@pwd", hpwd);
